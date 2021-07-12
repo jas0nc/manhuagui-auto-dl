@@ -15,7 +15,7 @@ def downloadCh(url, config_json=None):
         'accept-language': 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6',
         'cache-control': 'no-cache',
         'pragma': 'no-cache',
-        'referer': 'https://tw.manhuagui.com/',
+        'referer': 'https://www.manhuagui.com/',
         'sec-fetch-dest': 'image',
         'sec-fetch-mode': 'no-cors',
         'sec-fetch-site': 'cross-site',

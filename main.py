@@ -9,8 +9,8 @@ import pathlib
 import shutil
 
 check_re = r'^https?://([a-zA-Z0-9]*\.)?manhuagui\.com/comic/([0-9]+)/?'
-request_url = 'https://tw.manhuagui.com/comic/%s'
-host = 'https://tw.manhuagui.com'
+request_url = 'https://www.manhuagui.com/comic/%s'
+host = 'https://www.manhuagui.com'
 comic_list = 'comic_url.txt'
 
 def main():
