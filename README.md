@@ -15,4 +15,5 @@ in order to start auto download in synology:
    Run on the following days: daily
    Task Settings->
    Run Command: python3 /path/to/main.py
-4) make sure the task is enabled, seat back, and wait, and ENJOY!!!.
+4) add the comic url into comic_url.txt
+5) make sure the task is enabled, seat back, and wait, and ENJOY!!!.
