@@ -1,26 +1,7 @@
-# manhuagui-dlr
+fork from: manhuagui-dlr https://github.com/HSSLC/manhuagui-dlr
 
-純Python製作，執行過程不需要任何外部JS環境
+1) added ability to batch download from a list of urls.
+2) the downloads will be transform into CBZ file format
+3) changed the source from simplified Chinese to traditional Chinese
 
-包含自動webp->jpg，可選
-
-初始化完後就能完全放置，過程中只有主控台視窗，可以繼續使用電腦不受影響  
-
-支援proxy與proxy pool，設定方式請參考更多資訊
-
-執行完後可參考[這裡](https://github.com/HSSLC/kc-generator)做下一步處理
-
-requirement:  
-* lzstring
-* requests
-* Pillow
-* BeautifulSoup4
-
-僅供學術研究交流使用，勿作為商業用途
-
-
-# 附註
-程式隨便拿沒關係，但不要把他當成自己原創的，謝謝
-
-# 更多資訊
-https://incognitas.net/works/downloader-1
+best fit for use with Komga https://komga.org
