@@ -7,6 +7,7 @@ from download import downloadCh, chdir
 from generate_config import generate_config
 import pathlib
 import shutil
+import unicodedata
 
 check_re = r'^https?://([a-zA-Z0-9]*\.)?manhuagui\.com/comic/([0-9]+)/?'
 request_url = 'https://www.manhuagui.com/comic/%s'
@@ -98,11 +99,13 @@ def main():
             for ch in ch_list:
                 bname = title.text
                 cname = ch[0]
+                padded_cname= cname
                 def replacenum(matched):
                     value = int(matched.group('value'))
                     return " " + str('{:03d}'.format(value)) + " "
-                padded_cname = re.sub('(?P<value>\d+)',replacenum,cname)
+                padded_cname = re.sub('(?P<value>\d+)',replacenum,padded_cname)
                 padded_cname = re.sub(r'[\\/:*?"<>|]', '_', padded_cname)
+                #padded_cname = unicodedata.normalize("NFKC",padded_cname)
                 cname = padded_cname
 
                 CBZfilename = re.sub(r'[\\/:*?"<>|]', '_', bname)+' - '+padded_cname+'.CBZ'
@@ -122,11 +125,13 @@ def main():
                 if os.path.isfile(CBZfilename):
                     print (' '+CBZfilename+" - File exist, skip")
                 else:
+                    print (' '+CBZfilename+" - Not found!!!")
+                    print(' '+' '+'Chapter URL: '+host + ch[1])
                     allchdownloaded = False
                     if not config_writed:
-                        downloadCh(host + ch[1], config_json)
+                        downloadCh(host + ch[1], cname, config_json)
                     else:
-                        downloadCh(host + ch[1])
+                        downloadCh(host + ch[1], cname)
                         config_writed = True
                     #每話間隔2秒
                     print(' '+'延遲2秒...')

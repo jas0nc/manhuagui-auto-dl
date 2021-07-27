@@ -7,8 +7,9 @@ from PIL import Image
 from zipfile import ZipFile
 import shutil
 import pathlib
+import unicodedata
 
-def downloadCh(url, config_json=None):
+def downloadCh(url, cname, config_json=None):
     def downloadPg(url, e, m, counter):
         h = {'accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
         'accept-encoding': 'gzip, deflate, br',
@@ -48,21 +49,22 @@ def downloadCh(url, config_json=None):
         #print('超過重試次數 跳過此檔案')
         return False
     j = get(url)
+    #print(j)
     if not j:
         return False
     bname = j['bname']
-    cname = j['cname']
+    #cname = j['cname']
+    #padded_cname = unicodedata.normalize("NFKC",cname)
 
     os.chdir(pathlib.Path(__file__).parent.absolute())
 
-    def replacenum(matched):
-        value = int(matched.group('value'))
-        return " " + str('{:03d}'.format(value)) + " "
-    padded_cname = re.sub('(?P<value>\d+)',replacenum,cname)
-    padded_cname = re.sub(r'[\\/:*?"<>|]', '_', padded_cname)
-    cname = padded_cname
+    #def replacenum(matched):
+    #    value = int(matched.group('value'))
+    #    return " " + str('{:03d}'.format(value)) + " "
+    #padded_cname = re.sub('(?P<value>\d+)',replacenum, padded_cname)
+    #padded_cname = re.sub(r'[\\/:*?"<>|]', '_', padded_cname)
 
-    CBZfilename = re.sub(r'[\\/:*?"<>|]', '_', bname)+' - '+padded_cname+'.CBZ'
+    CBZfilename = re.sub(r'[\\/:*?"<>|]', '_', bname)+' - '+cname+'.CBZ'
     missingpage = 0
 
     chdir(os.path.join('temp',re.sub(r'[\\/:*?"<>|]', '_', bname), 'jpg', cname))
