@@ -40,7 +40,7 @@ def main():
                     print('無效的網址')
                     continue
             try:
-                res = requests.get(request_url % checked_id)
+                res = requests.get(request_url % checked_id, timeout = 3)
                 res.raise_for_status()
             except:
                 print('錯誤:可能是沒網路或被ban ip?')
