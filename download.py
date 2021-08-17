@@ -71,7 +71,7 @@ def downloadCh(url, cname, config_json=None):
     os.chdir(os.path.join('..', '..'))
     chdir(os.path.join('raw', cname))
     length = j['len']
-    print(' '+'下載 %s 中 共%s頁' % (CBZfilename, length))
+    #print(' '+'下載 %s 中 共%s頁' % (CBZfilename, length))
     e = j['sl']['e']
     m = j['sl']['m']
     path = j['path']
@@ -81,16 +81,16 @@ def downloadCh(url, cname, config_json=None):
         pgUrl = 'https://i.hamreus.com' + path +  filename
         output_filename = filename + '.jpg'
         src_filename = os.path.join('..', '..', 'jpg', cname, output_filename)
-        if os.path.isfile(src_filename):
-            print (' '+' '+src_filename+" - File exist, skip")
-        else:
-            print(' '+' '+os.path.basename(pgUrl)+" - Downloading                                        ")
+        if not os.path.isfile(src_filename):
+            #print (' '+' '+src_filename+" - File exist, skip")
+        #else:
+            #print(' '+' '+os.path.basename(pgUrl)+" - Downloading                                        ")
             #每話間隔2秒
-            print('  '+'延遲1秒...                                                                        ')
-            print('  下載 %s: %s/%s' % (CBZfilename, i, length), end='\r')
+            #print('  '+'延遲1秒...                                                                        ')
+            #print('  下載 %s: %s/%s' % (CBZfilename, i, length), end='\r')
             if (downloadPg(pgUrl, e, m, i) == False):
             	missingpage += 1
-            	print(' '+' cannot download: '+os.path.basename(pgUrl)+" - missing page +1				")
+            	print(' '+' cannot download: '+os.path.basename(pgUrl)+" - missing page +1")
             time.sleep(1)
         i += 1
     os.chdir(pathlib.Path(__file__).parent.absolute())
@@ -108,10 +108,9 @@ def downloadCh(url, cname, config_json=None):
             z += 1
         # close the Zip File
         zipObj.close()
-        print (' '+CBZfilename+" - is Created									")
+        print ('   '+CBZfilename+" - has just been Downlaoded and Created :)")
     else:
-        print (' '+CBZfilename+" - download failed, "+str(missingpage)+" pages are missing				")
-
+        print ('   '+CBZfilename+" - download failed, "+str(missingpage)+" pages are missing")
     # remove files
     os.chdir(pathlib.Path(__file__).parent.absolute())
     if os.path.isfile(os.path.join('CBZ',re.sub(r'[\\/:*?"<>|]', '_', bname),CBZfilename)):
