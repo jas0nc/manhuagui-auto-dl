@@ -55,7 +55,7 @@ def main():
                 authors.append(author.text)
             authors = '、'.join(authors)
             coverlink = bs.select('.hcover img')
-            coverlink = [x['src'] for x in coverlink][0]
+            coverlink = 'https:'+[x['src'] for x in coverlink][0]
             #print(coverlink)
             description = bs.select('div#intro-cut')[0]
             #print(description)
