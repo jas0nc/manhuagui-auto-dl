@@ -5,6 +5,12 @@ fork from: manhuagui-dlr https://github.com/HSSLC/manhuagui-dlr
 
 best fit for use with Komga https://komga.org
 
+To install python3 dependancy on SYnology. Run below command in ssh 
+sudo -i
+python3 -m ensurepip
+python3 -m pip install --upgrade pip
+python3 -m pip install bs4 requests lzstring Pillow
+
 in order to start auto download in synology:
 1) Go to Setting->task scheduler
 2) Add schduled tast
